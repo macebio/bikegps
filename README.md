@@ -18,8 +18,10 @@ Three physical things + an iPhone:
 |---|------|---------------|
 | 1 | **Waveshare ESP32-C6-Touch-LCD-1.47** *(touch version!)* | [AliExpress](https://www.aliexpress.com/item/1005009816465254.html) ~$13–15 |
 | 2 | **3D-printed handlebar mount** | Print the STEP file in `3d-mounts/` (PETG/ASA, ~2h) |
-| 3 | **microSD card ≥ 4 GB** (Class 10) | Any — offline map tiles loaded with `tools/prepare_sd.py` |
+| 3 | **microSD card ≥ 4 GB** (Class 10) with offline map tiles | Any — tiles loaded via `tools/prepare_sd.py` |
 | 4 | **iPhone** (iOS 16+) | — |
+
+> ⚠️ **Buy the TOUCH version** of the ESP32 module — the non-touch version has different GPIO pins and the firmware will not work on it.
 
 No soldering, no extra wiring. The ESP32-C6 module includes display, touch, BLE, and SD slot on a single board.
 
@@ -36,20 +38,6 @@ No soldering, no extra wiring. The ESP32-C6 module includes display, touch, BLE,
 | **Temperature** | ESP32 chip temperature sensor shown on screen |
 | **Touch to zoom** | Tap top half of screen → toggle between z15 (detail) and z14 (overview) |
 | **Touch to change view** | Tap bottom half → cycle Speed / Map+Info / Full Map / Satellite / Night |
-
----
-
-## Hardware you need
-
-| Component | Where to buy | Price (approx.) |
-|---|---|---|
-| **Waveshare ESP32-C6-Touch-LCD-1.47** *(touch version!)* | [AliExpress](https://www.aliexpress.com/item/1005009816465254.html) | ~$13–15 |
-| microSD card (≥4 GB, Class 10) | Any | ~$5 |
-| iPhone (iOS 16+) | — | you already have one |
-
-> ⚠️ **Buy the TOUCH version** — the non-touch version has different GPIO pins and this firmware will not work on it.
-
-No soldering, no extra wiring. Everything — display, touch, BLE, SD slot — is on the Waveshare module.
 
 ---
 
@@ -130,8 +118,10 @@ bikeesp32gps/
 │           ├── NavigationManager.swift
 │           └── GPSTransmitter.swift
 ├── tools/
-│   ├── prepare_sd.py           ← interactive wizard: pick city, zoom, layer → download tiles
+│   ├── prepare_sd.py           ← interactive wizard: city search, zoom, layer → tiles on SD
 │   └── download_tiles.py       ← advanced CLI: direct bbox/region/lat-lon download
+├── docs/
+│   └── ios-sideloading.md      ← step-by-step Xcode guide + 7-day workaround
 └── 3d-mounts/                  ← STEP files for handlebar mount
 ```
 
@@ -172,28 +162,97 @@ arduino-cli upload \
   esp32-firmware/bikegps_v3/
 ```
 
-### 4. Prepare the SD card
+---
 
-The firmware expects tiles at `/tiles/{zoom}/{x}/{y}.jpg` (OSM slippy map convention).
+## Setup: SD card maps
 
-**Recommended — interactive wizard:**
+The firmware loads map tiles from the SD card at `/tiles/{zoom}/{x}/{y}.jpg` (OSM slippy map format). You pre-load an area before your ride — no internet needed while cycling.
+
+### Wizard (recommended)
+
+`tools/prepare_sd.py` is an interactive wizard that guides you through four steps:
 
 ```bash
-pip install pillow          # one-time, for JPEG conversion
-python tools/prepare_sd.py
+pip3 install Pillow        # one-time install (needed for JPEG conversion)
+python3 tools/prepare_sd.py
 ```
 
-The wizard auto-detects your SD card, lets you search for a city by name, picks a zoom profile (city / trip / region), and shows a size estimate before downloading anything.
+**Step 1 — Where?**
+Pick from the predefined regions (Lazio, Roma, Viterbo…) or type any city name. The wizard geocodes it automatically and asks you to confirm if multiple results are found.
 
-**Advanced — direct CLI:**
+```
+Passo 1/4  Dove vuoi andare in bici?
+
+  → [1] Cerca una città o un luogo...
+    [2] Lazio
+    [3] Roma
+    ...
+```
+
+**Step 2 — How much area?**
+Choose a coverage profile based on how far you plan to ride:
+
+| Profile | Zoom | Radius | Approx. size |
+|---------|------|--------|--------------|
+| Solo città | 15 | ~6 km | 30–60 MB |
+| Gita / uscita | 14 + 15 | ~15 km | 80–200 MB |
+| Intera zona | 14 + 15 | full region bbox | varies |
+| Ampia area | 13 + 14 | full region bbox | lighter, less detail |
+
+**Step 3 — Map style?**
+- `Mappa stradale` — OpenStreetMap road tiles, ideal for navigation
+- `Satellite` — Esri World Imagery aerial tiles, heavier files
+- `Entrambe` — downloads both sets
+
+**Step 4 — SD card path?**
+The wizard auto-detects removable volumes on macOS (`/Volumes/*`) and shows free space. Pick one from the list or enter a path manually.
+
+After the four steps the wizard shows a summary — tile count, estimated MB, and estimated download time — before asking for confirmation.
+
+```
+════════════════════════════════════════════
+  RIEPILOGO
+════════════════════════════════════════════
+  Zona          Firenze, Toscana, Italia
+  Zoom          14, 15
+  Tipo mappa    map
+  Tile totali   1,549
+  Dimensione    ~45 MB
+  Tempo stimato ~6 minuti
+  Destinazione  /Volumes/SDCARD/tiles
+════════════════════════════════════════════
+
+  Vuoi iniziare il download? [S/n] ›
+```
+
+The download is resumable — re-running skips tiles that already exist.
+
+### Advanced CLI (scripted / CI use)
+
+If you prefer flags over prompts, `download_tiles.py` takes everything on the command line:
 
 ```bash
-python tools/download_tiles.py \
+# A city by bounding box
+python3 tools/download_tiles.py \
   --region lazio --zoom 14,15 --layer map \
   --out /Volumes/SDCARD/tiles
+
+# A custom area around a point
+python3 tools/download_tiles.py \
+  --lat 43.7696 --lon 11.2558 --radius 15 \
+  --zoom 14,15 --layer sat \
+  --out /Volumes/SDCARD/tiles
+
+# Dry-run: count tiles without downloading
+python3 tools/download_tiles.py \
+  --region lazio --zoom 14,15 --dry-run
 ```
 
-Zoom 14+15 for a region like Lazio (~100 MB). The 4 GB card has plenty of room for zoom 12–16 if needed.
+Both tools save tiles at the path the firmware expects:
+- Road map → `/tiles/{z}/{x}/{y}.jpg`
+- Satellite → `/tiles/sat/{z}/{x}/{y}.jpg`
+
+> **Note:** tiles must be **baseline JPEG**, not progressive — JPEGDEC on the ESP32 does not support progressive JPEG. Both tools handle this conversion automatically when Pillow is installed. If you add tiles manually, convert them first: `sips -s format jpeg *.jpg --out .`
 
 ---
 
