@@ -1,6 +1,8 @@
 # BikeGPS
 
-A DIY real-time GPS display for cyclists — an iPhone app sends your position and turn-by-turn navigation to a tiny ESP32 screen mounted on the handlebar via Bluetooth Low Energy.
+> 🇬🇧 [English version](README.en.md)
+
+Un display GPS fai-da-te per ciclisti — un'app iPhone manda la tua posizione e la navigazione turn-by-turn a un piccolo schermo ESP32 montato sul manubrio via Bluetooth Low Energy.
 
 ![BikeGPS display showing map tile and navigation](icon.jpg)
 
@@ -10,40 +12,40 @@ A DIY real-time GPS display for cyclists — an iPhone app sends your position a
 
 ---
 
-## What you need
+## Cosa ti serve
 
-Three physical things + an iPhone:
+Tre cose fisiche + un iPhone:
 
-| # | What | How to get it |
-|---|------|---------------|
-| 1 | **Waveshare ESP32-C6-Touch-LCD-1.47** *(touch version!)* | [AliExpress](https://www.aliexpress.com/item/1005009816465254.html) ~$13–15 |
-| 2 | **3D-printed handlebar mount** | Print the STEP file in `3d-mounts/` (PETG/ASA, ~2h) |
-| 3 | **microSD card ≥ 4 GB** (Class 10) with offline map tiles | Any — tiles loaded via `tools/prepare_sd.py` |
+| # | Cosa | Come ottenerla |
+|---|------|----------------|
+| 1 | **Waveshare ESP32-C6-Touch-LCD-1.47** *(versione TOUCH!)* | [AliExpress](https://www.aliexpress.com/item/1005009816465254.html) ~$13–15 |
+| 2 | **Mount da manubrio stampato in 3D** | Stampa il file STEP in `3d-mounts/` (PETG/ASA, ~2h) |
+| 3 | **Scheda microSD ≥ 4 GB** (Class 10) con mappe offline | Qualsiasi — le tile si caricano con `tools/prepare_sd.py` |
 | 4 | **iPhone** (iOS 16+) | — |
 
-> ⚠️ **Buy the TOUCH version** of the ESP32 module — the non-touch version has different GPIO pins and the firmware will not work on it.
+> ⚠️ **Compra la versione TOUCH** del modulo ESP32 — la versione non-touch ha pin GPIO diversi e il firmware non funzionerà.
 
-No soldering, no extra wiring. The ESP32-C6 module includes display, touch, BLE, and SD slot on a single board.
+Nessuna saldatura, nessun cablaggio aggiuntivo. Il modulo ESP32-C6 include display, touch, BLE e slot SD su una singola scheda.
 
 ---
 
-## What it does
+## Cosa fa
 
-| Feature | Details |
+| Funzione | Dettaglio |
 |---|---|
-| **Live map tile** | OSM or Esri satellite tiles pre-loaded on SD card, no internet needed while riding |
-| **Speed + compass** | Real-time from iPhone GPS, displayed in large digits |
-| **Turn-by-turn nav** | Search a destination on the iPhone → ESP32 shows arrow + distance + voice guidance |
-| **Rerouting** | Automatically recalculates if you take a wrong turn |
-| **Temperature** | ESP32 chip temperature sensor shown on screen |
-| **Touch to zoom** | Tap top half of screen → toggle between z15 (detail) and z14 (overview) |
-| **Touch to change view** | Tap bottom half → cycle Speed / Map+Info / Full Map / Satellite / Night |
+| **Mappa live** | Tile OSM o satellite Esri pre-caricate su SD, nessuna connessione necessaria durante il percorso |
+| **Velocità + bussola** | In tempo reale dal GPS dell'iPhone, mostrati in grandi cifre |
+| **Navigazione turn-by-turn** | Cerca una destinazione sull'iPhone → l'ESP32 mostra freccia + distanza + guida vocale |
+| **Ricalcolo percorso** | Ricalcola automaticamente se si prende la strada sbagliata |
+| **Temperatura** | Sensore di temperatura del chip ESP32 mostrato a schermo |
+| **Touch per zoom** | Tocca la metà superiore dello schermo → alterna tra z15 (dettaglio) e z14 (panoramica) |
+| **Touch per cambiare vista** | Tocca la metà inferiore → cicla Velocità / Mappa+Info / Mappa Intera / Satellite / Notte |
 
 ---
 
-## 3D-printed handlebar mount
+## Mount da manubrio stampato in 3D
 
-The `3d-mounts/` directory contains a STEP file for a handlebar mount:
+La directory `3d-mounts/` contiene un file STEP per il mount da manubrio:
 
 ```
 3d-mounts/
@@ -61,15 +63,15 @@ Stampa in PETG o ASA (resistenza UV/intemperie), infill 40%.
 
 ---
 
-## Architecture
+## Architettura
 
 ```
 ┌──────────────────────────────────────┐
-│          iPhone (iOS app)            │
-│  CoreLocation → GPS coordinates      │
-│  MapKit       → turn-by-turn routing │
-│  AVFoundation → Italian voice nav    │
-│  Sends JSON via BLE NUS every ~1 s   │
+│          iPhone (app iOS)            │
+│  CoreLocation → coordinate GPS       │
+│  MapKit       → navigazione          │
+│  AVFoundation → voce in italiano     │
+│  Invia JSON via BLE NUS ogni ~1 s    │
 └──────────────────┬───────────────────┘
                    │ Bluetooth LE (Nordic NUS)
                    │ {"lat":…,"lon":…,"speed":…,
@@ -77,14 +79,14 @@ Stampa in PETG o ASA (resistenza UV/intemperie), infill 40%.
 ┌──────────────────▼───────────────────┐
 │     Waveshare ESP32-C6 (firmware)    │
 │  BLE receive  → parse JSON           │
-│  SD card      → load map tile (JPEG) │
-│  JPEGDEC      → decode to RGB565     │
-│  Arduino_GFX  → 172×320 IPS display  │
-│  Touch AXS5106L → gesture handling   │
+│  SD card      → carica tile (JPEG)   │
+│  JPEGDEC      → decode in RGB565     │
+│  Arduino_GFX  → display IPS 172×320  │
+│  Touch AXS5106L → gestione tocchi    │
 └──────────────────────────────────────┘
 ```
 
-BLE packet example:
+Esempio pacchetto BLE:
 ```json
 {
   "lat": 41.9028, "lon": 12.4964,
@@ -94,19 +96,19 @@ BLE packet example:
   "nav": 1, "ndist": 350, "nst": "Via Nazionale"
 }
 ```
-`nav` values: `-1` = off · `0` = straight · `1` = right · `2` = left · `3` = U-turn · `4` = arrived
+Valori `nav`: `-1` = off · `0` = dritto · `1` = destra · `2` = sinistra · `3` = inversione · `4` = arrivato
 
 ---
 
-## Repository structure
+## Struttura del repository
 
 ```
 bikeesp32gps/
 ├── esp32-firmware/
 │   └── bikegps_v3/
-│       └── bikegps_v3.ino      ← main Arduino sketch (all-in-one)
+│       └── bikegps_v3.ino      ← sketch Arduino principale (tutto in un file)
 ├── iphone-app/
-│   ├── project.yml             ← XcodeGen spec (run to regenerate .xcodeproj)
+│   ├── project.yml             ← spec XcodeGen (esegui per rigenerare .xcodeproj)
 │   └── BikeGPS/
 │       ├── BikeGPSApp.swift
 │       ├── ContentView.swift
@@ -118,25 +120,25 @@ bikeesp32gps/
 │           ├── NavigationManager.swift
 │           └── GPSTransmitter.swift
 ├── tools/
-│   ├── prepare_sd.py           ← interactive wizard: city search, zoom, layer → tiles on SD
-│   └── download_tiles.py       ← advanced CLI: direct bbox/region/lat-lon download
+│   ├── prepare_sd.py           ← wizard interattivo: città, zoom, layer → tile sulla SD
+│   └── download_tiles.py       ← CLI avanzata: download diretto per bbox/regione/lat-lon
 ├── docs/
-│   └── ios-sideloading.md      ← step-by-step Xcode guide + 7-day workaround
-└── 3d-mounts/                  ← STEP files for handlebar mount
+│   └── ios-sideloading.md      ← guida Xcode passo per passo + problema dei 7 giorni
+└── 3d-mounts/                  ← file STEP per il mount da manubrio
 ```
 
 ---
 
-## Setup: ESP32 firmware
+## Setup: firmware ESP32
 
-### 1. Install arduino-cli (or Arduino IDE 2.x)
+### 1. Installa arduino-cli (o Arduino IDE 2.x)
 
 ```bash
 brew install arduino-cli
 arduino-cli core install esp32:esp32
 ```
 
-### 2. Install libraries
+### 2. Installa le librerie
 
 ```bash
 arduino-cli lib install "Arduino_GFX_Library"
@@ -145,17 +147,17 @@ arduino-cli lib install "ArduinoJson"
 arduino-cli lib install "ESP32 BLE Arduino"
 ```
 
-Also install **esp_lcd_touch_axs5106l** manually — download from [this repo](https://github.com/waveshareteam/ESP32-C6-Touch-LCD-1.47) and place it in `~/Documents/Arduino/libraries/`.
+Installa anche **esp_lcd_touch_axs5106l** manualmente — scaricala da [questo repo](https://github.com/waveshareteam/ESP32-C6-Touch-LCD-1.47) e mettila in `~/Documents/Arduino/libraries/`.
 
-### 3. Compile and flash
+### 3. Compila e flash
 
 ```bash
-# Compile
+# Compila
 arduino-cli compile \
   --fqbn esp32:esp32:esp32c6:CDCOnBoot=cdc \
   esp32-firmware/bikegps_v3/
 
-# Flash (adjust port as needed — /dev/cu.usbmodem* on macOS)
+# Flash (aggiusta la porta se necessario — /dev/cu.usbmodem* su macOS)
 arduino-cli upload \
   -p /dev/cu.usbmodem1101 \
   --fqbn esp32:esp32:esp32c6:CDCOnBoot=cdc \
@@ -164,21 +166,21 @@ arduino-cli upload \
 
 ---
 
-## Setup: SD card maps
+## Setup: mappe sulla SD card
 
-The firmware loads map tiles from the SD card at `/tiles/{zoom}/{x}/{y}.jpg` (OSM slippy map format). You pre-load an area before your ride — no internet needed while cycling.
+Il firmware carica le tile dalla SD al percorso `/tiles/{zoom}/{x}/{y}.jpg` (formato OSM slippy map). Le tile si pre-caricano prima dell'uscita — nessuna connessione internet necessaria durante il percorso.
 
-### Wizard (recommended)
+### Wizard interattivo (consigliato)
 
-`tools/prepare_sd.py` is an interactive wizard that guides you through four steps:
+`tools/prepare_sd.py` è un wizard a quattro passi che ti guida nella scelta dell'area e nel download:
 
 ```bash
-pip3 install Pillow        # one-time install (needed for JPEG conversion)
+pip3 install Pillow             # una volta sola (serve per la conversione JPEG)
 python3 tools/prepare_sd.py
 ```
 
-**Step 1 — Where?**
-Pick from the predefined regions (Lazio, Roma, Viterbo…) or type any city name. The wizard geocodes it automatically and asks you to confirm if multiple results are found.
+**Passo 1 — Dove vuoi andare in bici?**
+Scegli tra le regioni predefinite (Lazio, Roma, Viterbo…) oppure digita il nome di qualsiasi città. Il wizard la geocodifica in automatico e, se trova più risultati, ti chiede quale intendevi.
 
 ```
 Passo 1/4  Dove vuoi andare in bici?
@@ -189,25 +191,24 @@ Passo 1/4  Dove vuoi andare in bici?
     ...
 ```
 
-**Step 2 — How much area?**
-Choose a coverage profile based on how far you plan to ride:
+**Passo 2 — Quanta area vuoi coprire?**
 
-| Profile | Zoom | Radius | Approx. size |
-|---------|------|--------|--------------|
+| Profilo | Zoom | Raggio | Dimensione approssimativa |
+|---------|------|--------|---------------------------|
 | Solo città | 15 | ~6 km | 30–60 MB |
 | Gita / uscita | 14 + 15 | ~15 km | 80–200 MB |
-| Intera zona | 14 + 15 | full region bbox | varies |
-| Ampia area | 13 + 14 | full region bbox | lighter, less detail |
+| Intera zona | 14 + 15 | tutta la bbox della regione | variabile |
+| Ampia area | 13 + 14 | tutta la bbox della regione | leggero, meno dettaglio |
 
-**Step 3 — Map style?**
-- `Mappa stradale` — OpenStreetMap road tiles, ideal for navigation
-- `Satellite` — Esri World Imagery aerial tiles, heavier files
-- `Entrambe` — downloads both sets
+**Passo 3 — Tipo di mappa?**
+- `Mappa stradale` — tile OpenStreetMap, ideale per la navigazione
+- `Satellite` — immagini aeree Esri World Imagery, file più pesanti
+- `Entrambe` — scarica entrambi i set
 
-**Step 4 — SD card path?**
-The wizard auto-detects removable volumes on macOS (`/Volumes/*`) and shows free space. Pick one from the list or enter a path manually.
+**Passo 4 — Dove si trova la SD?**
+Il wizard rileva automaticamente i volumi rimovibili su macOS (`/Volumes/*`) e mostra lo spazio libero. Scegli dalla lista o inserisci il percorso manualmente.
 
-After the four steps the wizard shows a summary — tile count, estimated MB, and estimated download time — before asking for confirmation.
+Dopo i quattro passi viene mostrato un riepilogo — numero di tile, MB stimati e tempo di download stimato — prima di chiedere conferma:
 
 ```
 ════════════════════════════════════════════
@@ -216,7 +217,7 @@ After the four steps the wizard shows a summary — tile count, estimated MB, an
   Zona          Firenze, Toscana, Italia
   Zoom          14, 15
   Tipo mappa    map
-  Tile totali   1,549
+  Tile totali   1.549
   Dimensione    ~45 MB
   Tempo stimato ~6 minuti
   Destinazione  /Volumes/SDCARD/tiles
@@ -225,48 +226,48 @@ After the four steps the wizard shows a summary — tile count, estimated MB, an
   Vuoi iniziare il download? [S/n] ›
 ```
 
-The download is resumable — re-running skips tiles that already exist.
+Il download è riprendibile — se lo interrompi e lo riavvii, le tile già presenti vengono saltate.
 
-### Advanced CLI (scripted / CI use)
+### CLI avanzata (uso da script o CI)
 
-If you prefer flags over prompts, `download_tiles.py` takes everything on the command line:
+Se preferisci i flag alla modalità interattiva, `download_tiles.py` accetta tutto dalla riga di comando:
 
 ```bash
-# A city by bounding box
+# Regione predefinita
 python3 tools/download_tiles.py \
   --region lazio --zoom 14,15 --layer map \
   --out /Volumes/SDCARD/tiles
 
-# A custom area around a point
+# Area personalizzata attorno a un punto
 python3 tools/download_tiles.py \
   --lat 43.7696 --lon 11.2558 --radius 15 \
   --zoom 14,15 --layer sat \
   --out /Volumes/SDCARD/tiles
 
-# Dry-run: count tiles without downloading
+# Dry-run: conta le tile senza scaricare
 python3 tools/download_tiles.py \
   --region lazio --zoom 14,15 --dry-run
 ```
 
-Both tools save tiles at the path the firmware expects:
-- Road map → `/tiles/{z}/{x}/{y}.jpg`
+Entrambi gli strumenti salvano le tile nel percorso atteso dal firmware:
+- Mappa stradale → `/tiles/{z}/{x}/{y}.jpg`
 - Satellite → `/tiles/sat/{z}/{x}/{y}.jpg`
 
-> **Note:** tiles must be **baseline JPEG**, not progressive — JPEGDEC on the ESP32 does not support progressive JPEG. Both tools handle this conversion automatically when Pillow is installed. If you add tiles manually, convert them first: `sips -s format jpeg *.jpg --out .`
+> **Nota:** le tile devono essere **JPEG baseline**, non progressive — JPEGDEC sull'ESP32 non supporta il JPEG progressivo. Entrambi gli strumenti gestiscono la conversione in automatico quando Pillow è installato. Se aggiungi tile manualmente, convertile prima: `sips -s format jpeg *.jpg --out .`
 
 ---
 
-## Setup: iPhone app
+## Setup: app iPhone
 
 > 📖 **Guida dettagliata (con troubleshooting e info sui 7 giorni):** [docs/ios-sideloading.md](docs/ios-sideloading.md)
 
-### 1. Install XcodeGen
+### 1. Installa XcodeGen
 
 ```bash
 brew install xcodegen
 ```
 
-### 2. Generate and open the project
+### 2. Genera e apri il progetto
 
 ```bash
 cd iphone-app
@@ -274,39 +275,39 @@ xcodegen generate
 open BikeGPS.xcodeproj
 ```
 
-### 3. Sign and install
+### 3. Firma e installa
 
-1. In Xcode → BikeGPS target → **Signing & Capabilities** → set your Apple ID as Team.
-2. Change `com.yourname.bikegps` to any unique bundle ID.
-3. Plug in your iPhone, select it as destination, press ▶.
-4. First run: **Settings → General → VPN & Device Management → [your Apple ID] → Trust**.
+1. In Xcode → target BikeGPS → **Signing & Capabilities** → imposta il tuo Apple ID come Team.
+2. Cambia `com.yourname.bikegps` con un bundle ID unico.
+3. Collega l'iPhone, selezionalo come destinazione, premi ▶.
+4. Al primo avvio: **Impostazioni → Generali → VPN e gestione dispositivo → [il tuo Apple ID] → Autorizza**.
 
-> Free developer accounts expire after 7 days — re-run from Xcode to refresh.
+> Gli account sviluppatore gratuiti scadono dopo 7 giorni — ri-esegui da Xcode per rinnovare.
 
 ---
 
-## Troubleshooting
+## Risoluzione dei problemi
 
-| Symptom | Fix |
+| Sintomo | Soluzione |
 |---|---|
-| Screen blank | Check USB-C connection; hold BOOT + press RESET to enter download mode |
-| Display garbage on first boot | The `lcd_reg_init()` call in the sketch is mandatory for the JD9853 driver — make sure it's not commented out |
-| BLE not connecting | Grant Bluetooth permission in iOS Settings; kill and reopen the app |
-| No location data | Settings → Privacy → Location → BikeGPS → **Always** |
-| Map shows grey tiles | SD card not mounted; check SPI.begin(1,3,2,4) precedes SD.begin(4) in setup() |
-| JPEG decode fails | Files must be **baseline JPEG** (not progressive). Re-convert: `sips -s format jpeg *.jpg` |
-| macOS copies `._` files to SD | Safe to delete. On macOS: `dot_clean /Volumes/SDCARD` |
-| Nav doesn't reroute | Make sure iPhone has network access (MapKit needs it for rerouting) |
+| Schermo spento | Controlla il connettore USB-C; tieni premuto BOOT + premi RESET per entrare in modalità download |
+| Display con artefatti al primo avvio | La chiamata `lcd_reg_init()` nello sketch è obbligatoria per il driver JD9853 — assicurati che non sia commentata |
+| BLE non si connette | Concedi il permesso Bluetooth nelle Impostazioni iOS; chiudi e riapri l'app |
+| Nessun dato di posizione | Impostazioni → Privacy → Posizione → BikeGPS → **Sempre** |
+| Mappa mostra tile grigie | SD non montata; verifica che SPI.begin(1,3,2,4) preceda SD.begin(4) nel setup() |
+| Decodifica JPEG fallisce | I file devono essere **JPEG baseline** (non progressivo). Riconverti: `sips -s format jpeg *.jpg` |
+| macOS copia file `._` sulla SD | Si possono ignorare o cancellare. Su macOS: `dot_clean /Volumes/SDCARD` |
+| La navigazione non ricalcola | Assicurati che l'iPhone abbia accesso a internet (MapKit ne ha bisogno per il ricalcolo) |
 
 ---
 
-## Contributing (including vibe-coders 🤙)
+## Contribuire (anche facendo vibecoding 🤙)
 
-This project was built with a mix of Arduino C++ and Swift, largely through AI-assisted coding sessions. **You don't need to be an expert** — if you use Claude Code, Cursor, or similar tools, here's how to get up to speed fast:
+Questo progetto è stato costruito con un mix di Arduino C++ e Swift, in gran parte attraverso sessioni di coding assistito da AI. **Non devi essere un esperto** — se usi Claude Code, Cursor o strumenti simili, ecco come entrare subito nel contesto:
 
-### Quick context for your AI assistant
+### Contesto rapido per il tuo assistente AI
 
-Paste this into your first message:
+Incolla questo nel tuo primo messaggio:
 ```
 I'm working on BikeGPS — an ESP32-C6 + iPhone BLE GPS display.
 Hardware: Waveshare ESP32-C6-Touch-LCD-1.47 (TOUCH version).
@@ -318,29 +319,29 @@ BLE: Nordic NUS profile, JSON packets, built-in ESP32 BLE library.
 iPhone: SwiftUI, CoreLocation, MapKit routing, AVSpeechSynthesizer.
 ```
 
-### Good first issues to tackle
+### Idee per chi vuole contribuire
 
-- [ ] Nighttime map tiles (darker palette, less glare)
-- [ ] Show elevation profile on the map
-- [ ] Speed limit display (using OSM data)
-- [ ] Android companion app
-- [ ] Widget for iPhone Lock Screen showing current speed
-- [ ] Battery-level optimisation (dim display when stationary)
-- [ ] Multi-language navigation voice (currently Italian only)
+- [ ] Tile notturne (palette più scura, meno abbagliamento)
+- [ ] Profilo altimetrico sulla mappa
+- [ ] Visualizzazione limiti di velocità (dati OSM)
+- [ ] App companion per Android
+- [ ] Widget per la Lock Screen dell'iPhone con la velocità attuale
+- [ ] Ottimizzazione batteria (schermo più scuro quando si è fermi)
+- [ ] Voce di navigazione multilingua (attualmente solo italiano)
 
-### How to submit changes
+### Come inviare modifiche
 
-1. Fork the repo
-2. Make your change (AI-assisted is totally fine)
-3. Test on real hardware if you can, or describe what you tested
-4. Open a PR — describe what you changed and why
+1. Fai un fork del repo
+2. Apporta la tua modifica (il coding assistito da AI è benvenuto)
+3. Testa su hardware reale se puoi, altrimenti descrivi cosa hai verificato
+4. Apri una PR — descrivi cosa hai cambiato e perché
 
-No formal code review process. If it works and doesn't break existing features, it goes in.
+Nessun processo formale di code review. Se funziona e non rompe le funzionalità esistenti, viene accettato.
 
 ---
 
-## License
+## Licenza
 
-MIT — free to use, modify, build, and sell.  
-OpenStreetMap tiles © OpenStreetMap contributors (ODbL).  
-Esri satellite tiles © Esri, Maxar, GeoEye (free for non-commercial use under Esri's standard terms).
+MIT — libero di usare, modificare, costruire e vendere.  
+Tile OpenStreetMap © OpenStreetMap contributors (ODbL).  
+Tile satellite Esri © Esri, Maxar, GeoEye (libero per uso non commerciale secondo i termini standard Esri).
