@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		167F6972DEE75584CAAED5F9 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C787F9158FCBF8475E0774C /* CoreBluetooth.framework */; };
+		28F0423A6EE5CF9D077A971B /* GPSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC40B4B0A19C0C14FC48AF4B /* GPSData.swift */; };
+		2D1BD0DE43B4AC5E66313226 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0939E3A15E86017F3581E96A /* BLEManager.swift */; };
+		361F98F457A6BBF3AF269DB3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EEC3343E32BEAFEE4FDEF1 /* ContentView.swift */; };
+		53E5F9AC841BC034A07D953B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C66DBDD1CF4E2B8B79D03152 /* UIKit.framework */; };
+		5E27CE7EEF2DDD6AEDB9F56B /* MapNavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A2EB5C2DA1F55EC0717F63 /* MapNavView.swift */; };
+		65E47B845AB13B60CC06B40E /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AC4FAA7FCEE193E91B5C7C /* NavigationManager.swift */; };
+		771B3806588D1894B516F890 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FF54064CE58E7B9D729B14 /* AVFoundation.framework */; };
+		94B6B539E233A54FC3E723D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC5B5BF03CA161E35F456C75 /* Assets.xcassets */; };
+		B08B9985C223C1FCA1D3B4C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9759282EFCA331E1730BBA2 /* Foundation.framework */; };
+		C66B4026A1227A7FB2EF1EE7 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E4779BCE35CB53676916EAB /* MapKit.framework */; };
+		D00CC0AC7264B4C435861954 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DC6CCFCDBB8116987AE4CC /* LocationManager.swift */; };
+		D97F144E7BE8927F9759EB5A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E5472697EA66F31720A336 /* CoreLocation.framework */; };
+		E4AE60FFFA6378AC5A5B6FB0 /* TileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6703BCD58B35BD36CBB8E0DB /* TileManager.swift */; };
+		FD2C28E6ABB8404F9A825D1F /* BikeGPSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7C4D7629DCA1DE21C05995 /* BikeGPSApp.swift */; };
+		FF3B2DA4BF788546A9A8DBE6 /* GPSTransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C744B60C782FB3C1750C3A /* GPSTransmitter.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0939E3A15E86017F3581E96A /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
+		269AA2967C0BD2B6B3F12D52 /* BikeGPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeGPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		42EEC3343E32BEAFEE4FDEF1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		46DC6CCFCDBB8116987AE4CC /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		4E4779BCE35CB53676916EAB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6703BCD58B35BD36CBB8E0DB /* TileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileManager.swift; sourceTree = "<group>"; };
+		68A2EB5C2DA1F55EC0717F63 /* MapNavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavView.swift; sourceTree = "<group>"; };
+		6C787F9158FCBF8475E0774C /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		81AC4FAA7FCEE193E91B5C7C /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		A9C744B60C782FB3C1750C3A /* GPSTransmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSTransmitter.swift; sourceTree = "<group>"; };
+		B0E5472697EA66F31720A336 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C66DBDD1CF4E2B8B79D03152 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CB7C4D7629DCA1DE21C05995 /* BikeGPSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeGPSApp.swift; sourceTree = "<group>"; };
+		CC40B4B0A19C0C14FC48AF4B /* GPSData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSData.swift; sourceTree = "<group>"; };
+		DC5B5BF03CA161E35F456C75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E8FF54064CE58E7B9D729B14 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E9759282EFCA331E1730BBA2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C6980557B8524B463DF912CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D97F144E7BE8927F9759EB5A /* CoreLocation.framework in Frameworks */,
+				167F6972DEE75584CAAED5F9 /* CoreBluetooth.framework in Frameworks */,
+				B08B9985C223C1FCA1D3B4C4 /* Foundation.framework in Frameworks */,
+				53E5F9AC841BC034A07D953B /* UIKit.framework in Frameworks */,
+				C66B4026A1227A7FB2EF1EE7 /* MapKit.framework in Frameworks */,
+				771B3806588D1894B516F890 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		111EB3E4431319338C0234A5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				269AA2967C0BD2B6B3F12D52 /* BikeGPS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8B0742CC8EF57DA461E257FA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CC40B4B0A19C0C14FC48AF4B /* GPSData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9CAB598FD2FE28F87B73754C = {
+			isa = PBXGroup;
+			children = (
+				F7B8E45485BF9F8B3FEDDA03 /* BikeGPS */,
+				E276E30E3F01FBEE72024078 /* Frameworks */,
+				111EB3E4431319338C0234A5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A0508D01667A5AD8DA4B2F5B /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				0939E3A15E86017F3581E96A /* BLEManager.swift */,
+				A9C744B60C782FB3C1750C3A /* GPSTransmitter.swift */,
+				46DC6CCFCDBB8116987AE4CC /* LocationManager.swift */,
+				81AC4FAA7FCEE193E91B5C7C /* NavigationManager.swift */,
+				6703BCD58B35BD36CBB8E0DB /* TileManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		A6CA879F3555D666779FDBE3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				68A2EB5C2DA1F55EC0717F63 /* MapNavView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E276E30E3F01FBEE72024078 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8FF54064CE58E7B9D729B14 /* AVFoundation.framework */,
+				6C787F9158FCBF8475E0774C /* CoreBluetooth.framework */,
+				B0E5472697EA66F31720A336 /* CoreLocation.framework */,
+				E9759282EFCA331E1730BBA2 /* Foundation.framework */,
+				4E4779BCE35CB53676916EAB /* MapKit.framework */,
+				C66DBDD1CF4E2B8B79D03152 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F7B8E45485BF9F8B3FEDDA03 /* BikeGPS */ = {
+			isa = PBXGroup;
+			children = (
+				DC5B5BF03CA161E35F456C75 /* Assets.xcassets */,
+				CB7C4D7629DCA1DE21C05995 /* BikeGPSApp.swift */,
+				42EEC3343E32BEAFEE4FDEF1 /* ContentView.swift */,
+				A0508D01667A5AD8DA4B2F5B /* Managers */,
+				8B0742CC8EF57DA461E257FA /* Models */,
+				A6CA879F3555D666779FDBE3 /* Views */,
+			);
+			path = BikeGPS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5F535B31D041C88FCC16AFAC /* BikeGPS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E7EE8872A4C4029A2CDFFF1 /* Build configuration list for PBXNativeTarget "BikeGPS" */;
+			buildPhases = (
+				60D3A70208424F8967D886AC /* SwiftLint (optional – remove if not installed) */,
+				EDF23DA107E3C0E0845CACE6 /* Sources */,
+				9A6DB81F42C641DB73A3E694 /* Resources */,
+				C6980557B8524B463DF912CC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BikeGPS;
+			packageProductDependencies = (
+			);
+			productName = BikeGPS;
+			productReference = 269AA2967C0BD2B6B3F12D52 /* BikeGPS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B0DDDF2AAFB5DA88EC79B430 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = 77C5EE8082AA9C0B4E0FA716 /* Build configuration list for PBXProject "BikeGPS" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 9CAB598FD2FE28F87B73754C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 111EB3E4431319338C0234A5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5F535B31D041C88FCC16AFAC /* BikeGPS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9A6DB81F42C641DB73A3E694 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94B6B539E233A54FC3E723D3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		60D3A70208424F8967D886AC /* SwiftLint (optional – remove if not installed) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint (optional – remove if not installed)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint > /dev/null; then swiftlint; fi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EDF23DA107E3C0E0845CACE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D1BD0DE43B4AC5E66313226 /* BLEManager.swift in Sources */,
+				FD2C28E6ABB8404F9A825D1F /* BikeGPSApp.swift in Sources */,
+				361F98F457A6BBF3AF269DB3 /* ContentView.swift in Sources */,
+				28F0423A6EE5CF9D077A971B /* GPSData.swift in Sources */,
+				FF3B2DA4BF788546A9A8DBE6 /* GPSTransmitter.swift in Sources */,
+				D00CC0AC7264B4C435861954 /* LocationManager.swift in Sources */,
+				5E27CE7EEF2DDD6AEDB9F56B /* MapNavView.swift in Sources */,
+				65E47B845AB13B60CC06B40E /* NavigationManager.swift in Sources */,
+				E4AE60FFFA6378AC5A5B6FB0 /* TileManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		010F0F513E2585413C7A737F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		6E703E41701C3F1E2A326E1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Q7M927JFXJ;
+				INFOPLIST_FILE = BikeGPS/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourname.bikegps;
+				PRODUCT_NAME = BikeGPS;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		76901E7602BE1D270DAA94F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		A53395D961DB0C365E72F43C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Q7M927JFXJ;
+				INFOPLIST_FILE = BikeGPS/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.yourname.bikegps;
+				PRODUCT_NAME = BikeGPS;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		77C5EE8082AA9C0B4E0FA716 /* Build configuration list for PBXProject "BikeGPS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				76901E7602BE1D270DAA94F5 /* Debug */,
+				010F0F513E2585413C7A737F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9E7EE8872A4C4029A2CDFFF1 /* Build configuration list for PBXNativeTarget "BikeGPS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A53395D961DB0C365E72F43C /* Debug */,
+				6E703E41701C3F1E2A326E1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B0DDDF2AAFB5DA88EC79B430 /* Project object */;
+}

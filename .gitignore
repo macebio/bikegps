@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Xcode derived / user data
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Build output
+build/
+*.o
+*.a
+
+# Claude Code internal
+.claude/
+
+# Arduino build cache
+*.bin
+*.elf
+*.map
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Tile cache (too large for git)
+tiles/
