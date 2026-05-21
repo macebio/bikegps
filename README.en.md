@@ -59,6 +59,8 @@ The `3d-mounts/` directory contains a STEP file for a handlebar mount:
 - 4× **M2.5** screws (~6 mm) — to mount the LCD module to the tray
 - 2× **M4** bolts (~20 mm) + nut — C-clamp on the handlebar
 
+**Ball joint assembly:** the ball is a separate printed part. Insert the M4 nut into the joint first, then glue the ball to the Waveshare module bracket (epoxy or super glue). Do not glue before inserting the nut — you won't be able to close the joint afterwards.
+
 Print in PETG or ASA (UV/weather resistant), 40% infill.
 
 ---

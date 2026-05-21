@@ -59,6 +59,8 @@ La directory `3d-mounts/` contiene un file STEP per il mount da manubrio:
 - 4× viti **M2.5** (~6 mm) — fissaggio modulo LCD al tray
 - 2× bulloni **M4** (~20 mm) + dado — C-clamp sul manubrio
 
+**Assemblaggio giunto a sfera:** la sfera è un pezzo stampato separato. Inserisci prima il dado M4 nel giunto, poi incolla la sfera alla staffa del modulo Waveshare (epossidica o cianocrilato). Non incollare prima di aver messo il dado — non riusciresti più a chiudere il giunto.
+
 Stampa in PETG o ASA (resistenza UV/intemperie), infill 40%.
 
 ---
