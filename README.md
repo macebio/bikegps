@@ -10,6 +10,21 @@ A DIY real-time GPS display for cyclists — an iPhone app sends your position a
 
 ---
 
+## What you need
+
+Three physical things + an iPhone:
+
+| # | What | How to get it |
+|---|------|---------------|
+| 1 | **Waveshare ESP32-C6-Touch-LCD-1.47** *(touch version!)* | [AliExpress](https://www.aliexpress.com/item/1005009816465254.html) ~$13–15 |
+| 2 | **3D-printed handlebar mount** | Print the STEP file in `3d-mounts/` (PETG/ASA, ~2h) |
+| 3 | **microSD card ≥ 4 GB** (Class 10) | Any — offline map tiles loaded with `tools/prepare_sd.py` |
+| 4 | **iPhone** (iOS 16+) | — |
+
+No soldering, no extra wiring. The ESP32-C6 module includes display, touch, BLE, and SD slot on a single board.
+
+---
+
 ## What it does
 
 | Feature | Details |
@@ -115,7 +130,8 @@ bikeesp32gps/
 │           ├── NavigationManager.swift
 │           └── GPSTransmitter.swift
 ├── tools/
-│   └── download_tiles.py       ← downloads OSM/Esri tiles to SD card
+│   ├── prepare_sd.py           ← interactive wizard: pick city, zoom, layer → download tiles
+│   └── download_tiles.py       ← advanced CLI: direct bbox/region/lat-lon download
 └── 3d-mounts/                  ← STEP files for handlebar mount
 ```
 
@@ -160,13 +176,20 @@ arduino-cli upload \
 
 The firmware expects tiles at `/tiles/{zoom}/{x}/{y}.jpg` (OSM slippy map convention).
 
+**Recommended — interactive wizard:**
+
 ```bash
-# Download map tiles for your area (edit bounding box in the script first)
-pip install requests pillow
+pip install pillow          # one-time, for JPEG conversion
+python tools/prepare_sd.py
+```
+
+The wizard auto-detects your SD card, lets you search for a city by name, picks a zoom profile (city / trip / region), and shows a size estimate before downloading anything.
+
+**Advanced — direct CLI:**
+
+```bash
 python tools/download_tiles.py \
-  --bbox 41.2,11.5,42.8,14.0 \  # lat_min, lon_min, lat_max, lon_max
-  --zoom 14 15 \                 # zoom levels
-  --layer map \                  # or: sat (Esri satellite)
+  --region lazio --zoom 14,15 --layer map \
   --out /Volumes/SDCARD/tiles
 ```
 
