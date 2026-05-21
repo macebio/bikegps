@@ -4,6 +4,10 @@ A DIY real-time GPS display for cyclists — an iPhone app sends your position a
 
 ![BikeGPS display showing map tile and navigation](icon.jpg)
 
+> **⚠️ Prototipo v1** — questo è un progetto personale al suo primo rilascio pubblico. Funziona, ma ci sono sicuramente molte cose da migliorare: hardware, firmware, app, mount 3D. Ogni suggerimento, segnalazione di bug, pull request o idea è benvenuta. Il progetto è pensato per crescere con la comunità.
+
+> **📱 Nota iOS** — per limiti imposti da Apple, l'app iPhone richiede di essere ricompilata da Xcode ogni 7 giorni (account gratuito). È scomodo ma non c'è alternativa senza pagare 99€/anno. [→ Leggi la guida completa](docs/ios-sideloading.md). Una **versione Android** è in lavorazione e non avrà questo problema.
+
 ---
 
 ## What it does
@@ -36,16 +40,21 @@ No soldering, no extra wiring. Everything — display, touch, BLE, SD slot — i
 
 ## 3D-printed handlebar mount
 
-The `3d-mounts/` directory contains STEP files for a handlebar mount:
+The `3d-mounts/` directory contains a STEP file for a handlebar mount:
 
 ```
 3d-mounts/
-├── bikegps_mount_22mm.step   ← for 22 mm handlebars
-├── bikegps_mount_31.8mm.step ← for 31.8 mm bars (road/MTB standard)
-└── README.md                 ← print settings + assembly notes
+├── bikegps_mount_v1.step   ← primo prototipo (STEP AP214)
+└── README.md               ← istruzioni stampa + hardware
 ```
 
-Print in PETG or ASA for UV/weather resistance. M2 × 6 mm screws hold the module.
+> **⚠️ Prototipo v1** — funziona ma probabilmente ha margini di miglioramento. Modifiche, varianti e versioni alternative sono molto benvenute.
+
+**Hardware necessario:**
+- 4× viti **M2.5** (~6 mm) — fissaggio modulo LCD al tray
+- 2× bulloni **M4** (~20 mm) + dado — C-clamp sul manubrio
+
+Stampa in PETG o ASA (resistenza UV/intemperie), infill 40%.
 
 ---
 
@@ -166,6 +175,8 @@ Zoom 14+15 for a region like Lazio (~100 MB). The 4 GB card has plenty of room f
 ---
 
 ## Setup: iPhone app
+
+> 📖 **Guida dettagliata (con troubleshooting e info sui 7 giorni):** [docs/ios-sideloading.md](docs/ios-sideloading.md)
 
 ### 1. Install XcodeGen
 

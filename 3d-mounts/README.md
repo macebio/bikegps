@@ -1,29 +1,37 @@
 # BikeGPS — Handlebar Mount
 
-STEP files for 3D-printing a handlebar mount for the Waveshare ESP32-C6-Touch-LCD-1.47.
+> ⚠️ **Prototipo v1** — questo è il primo prototipo funzionante. Probabilmente ci sono molte cose da migliorare: ergonomia, angolo del display, resistenza alle vibrazioni, facilità di montaggio. Ogni suggerimento, modifica o versione alternativa è benvenuta — aprire una PR o un Issue su GitHub.
 
-## Files
+## File
 
-| File | Handlebar diameter |
+| File | Descrizione |
 |---|---|
-| `bikegps_mount_22mm.step` | 22 mm (city bike, most scooters) |
-| `bikegps_mount_31.8mm.step` | 31.8 mm (road / MTB standard) |
+| `bikegps_mount_v1.step` | Primo prototipo — mount per manubrio da bici con fissaggio a C-clamp |
 
-> Files not yet uploaded — add your design here!
+File in formato STEP AP214, apribile con FreeCAD, Fusion 360, SolidWorks, KiCad 3D Viewer o qualsiasi altro tool CAD.
 
-## Print settings
+## Hardware necessario
 
-- **Material**: PETG or ASA (UV and weather resistant)
-- **Layer height**: 0.2 mm
+| Componente | Quantità | Uso |
+|---|---|---|
+| Viti M2.5 (lunghezza ~6 mm) | 4 | Fissaggio modulo LCD al tray |
+| Bulloni M4 (lunghezza ~20 mm) + dado | 2 | C-clamp sul manubrio |
+
+## Impostazioni di stampa consigliate
+
+- **Materiale**: PETG o ASA (resistenza UV e alle intemperie)
+- **Altezza layer**: 0.2 mm
 - **Infill**: 40%
-- **Supports**: needed under the clamp arch
+- **Supporti**: necessari sotto l'arco del C-clamp
+- **Orientamento**: posizionare il tray del display rivolto verso il basso per stampare senza supporti nella parte critica
 
-## Hardware
+## Compatibilità manubrio
 
-- 2× M2 × 6 mm countersunk screws (hold module in tray)
-- 1× M4 × 20 mm bolt + nut (handlebar clamp)
+La v1 è progettata per manubri standard da bici. Se hai un diametro diverso apri una PR con la variante.
 
-## Contributing your design
+## Come contribuire
 
-Export as `.step` (STEP AP214) so it can be opened in FreeCAD, Fusion 360, or any other CAD tool.
-Name the file `bikegps_mount_{diameter}mm.step`.
+1. Modifica il file STEP (o esportane uno nuovo dal tuo CAD)
+2. Aggiorna questo README con le differenze rispetto alla v1
+3. Nomina il file `bikegps_mount_v2.step` (o `_22mm`, `_31.8mm`, etc.)
+4. Apri una PR — qualsiasi miglioramento è benvenuto
