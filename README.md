@@ -20,9 +20,11 @@ Tre cose fisiche + un iPhone:
 
 | # | Cosa | Come ottenerla |
 |---|------|----------------|
-| 1 | **Waveshare ESP32-C6-Touch-LCD-1.47** *(versione TOUCH!)* | [AliExpress](https://www.aliexpress.com/item/1005009816465254.html) ~$13–15 |
+| 1 | **Waveshare ESP32-C6-Touch-LCD-1.47** *(versione TOUCH!)* | [AliExpress](https://s.click.aliexpress.com/e/_c4UAbTp7) ~$13–15 |
 | 2 | **Mount da manubrio stampato in 3D** | Stampa il file STEP in `3d-mounts/` (PETG/ASA, ~2h) |
 | 3 | **Scheda microSD ≥ 4 GB** (Class 10) con mappe offline | Qualsiasi — le tile si caricano con `tools/prepare_sd.py` |
+
+> 🔗 Il link AliExpress è affiliato — supporta il progetto senza costi aggiuntivi per te.
 | 4 | **iPhone** (iOS 16+) | — |
 
 > ⚠️ **Compra la versione TOUCH** del modulo ESP32 — la versione non-touch ha pin GPIO diversi e il firmware non funzionerà.

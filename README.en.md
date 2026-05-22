@@ -20,9 +20,11 @@ Three physical things + an iPhone:
 
 | # | What | How to get it |
 |---|------|---------------|
-| 1 | **Waveshare ESP32-C6-Touch-LCD-1.47** *(touch version!)* | [AliExpress](https://www.aliexpress.com/item/1005009816465254.html) ~$13–15 |
+| 1 | **Waveshare ESP32-C6-Touch-LCD-1.47** *(touch version!)* | [AliExpress](https://s.click.aliexpress.com/e/_c4UAbTp7) ~$13–15 |
 | 2 | **3D-printed handlebar mount** | Print the STEP file in `3d-mounts/` (PETG/ASA, ~2h) |
 | 3 | **microSD card ≥ 4 GB** (Class 10) with offline map tiles | Any — tiles loaded via `tools/prepare_sd.py` |
+
+> 🔗 The AliExpress link is an affiliate link — it supports the project at no extra cost to you.
 | 4 | **iPhone** (iOS 16+) | — |
 
 > ⚠️ **Buy the TOUCH version** of the ESP32 module — the non-touch version has different GPIO pins and the firmware will not work on it.
