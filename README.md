@@ -43,6 +43,28 @@ Nessuna saldatura, nessun cablaggio aggiuntivo. Il modulo ESP32-C6 include displ
 
 ---
 
+## Alimentazione
+
+Il modulo Waveshare ESP32-C6 si alimenta via **USB-C a 5V** (stessa porta usata per la programmazione).
+
+### Soluzione attuale: porta USB dell'e-bike
+
+Se hai una **bici elettrica con porta USB sul controller del manubrio** (come le Haibike con motore Yamaha), basta un cavo **USB micro → USB-C**: la bici alimenta il modulo quando è accesa e smette quando è spenta. Nessun componente aggiuntivo, nessuna batteria da ricaricare.
+
+### Alternative per bici senza porta USB
+
+| Soluzione | Adatta a | Note |
+|---|---|---|
+| **Powerbank** (5000 mAh, ~100g) | Qualsiasi bici | La più semplice — dura giorni, si ricarica via USB-C |
+| **LiPo 500 mAh + TP4056** | Mount integrato | ~4h di autonomia (ESP32 consuma ~100–150 mA con display attivo) |
+| **Buck converter 36/48V → 5V** | E-bike senza porta USB | Wired diretto alla batteria, sempre acceso con la bici |
+| **Dinamo mozzo** | Bici non elettrica | Autonomo, ma serve raddrizzatore + regolatore 5V |
+| **Pannello solare** | Uso estivo | Inaffidabile da solo, utile come supplemento a un LiPo |
+
+> 💡 **Vuoi contribuire?** L'alimentazione è uno dei punti più aperti del progetto. Soluzioni interessanti da esplorare: mount con LiPo integrato e ricarica wireless, integrazione con il BUS CAN delle e-bike Yamaha/Bosch, supporto dinamo con supercapacitor per alimentare anche da fermo. Ogni proposta, schema o prototipo è benvenuto.
+
+---
+
 ## Mount da manubrio stampato in 3D
 
 La directory `3d-mounts/` contiene un file STEP per il mount da manubrio:
@@ -330,6 +352,7 @@ iPhone: SwiftUI, CoreLocation, MapKit routing, AVSpeechSynthesizer.
 - [ ] Widget per la Lock Screen dell'iPhone con la velocità attuale
 - [ ] Ottimizzazione batteria (schermo più scuro quando si è fermi)
 - [ ] Voce di navigazione multilingua (attualmente solo italiano)
+- [ ] Soluzioni di alimentazione per bici non elettriche (LiPo integrato nel mount, dinamo mozzo, buck converter da batteria e-bike)
 
 ### Come inviare modifiche
 

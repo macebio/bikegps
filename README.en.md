@@ -43,6 +43,28 @@ No soldering, no extra wiring. The ESP32-C6 module includes display, touch, BLE,
 
 ---
 
+## Power
+
+The Waveshare ESP32-C6 module is powered via **USB-C at 5V** (the same port used for programming).
+
+### Current setup: e-bike controller USB port
+
+If you have an **e-bike with a USB port on the handlebar controller** (such as Haibike with a Yamaha motor), a simple **USB micro → USB-C cable** is all you need: the bike powers the module when switched on and cuts power when switched off. No extra components, no batteries to charge.
+
+### Alternatives for bikes without a USB port
+
+| Solution | Best for | Notes |
+|---|---|---|
+| **Powerbank** (5000 mAh, ~100g) | Any bike | Simplest option — lasts days, recharged via USB-C |
+| **LiPo 500 mAh + TP4056** | Integrated into mount | ~4h runtime (ESP32 draws ~100–150 mA with display active) |
+| **Buck converter 36/48V → 5V** | E-bike without USB port | Wired directly to the battery, always on with the bike |
+| **Hub dynamo** | Non-electric bike | Self-sufficient, but requires a rectifier + 5V regulator |
+| **Solar panel** | Summer / long rides | Unreliable alone, useful as a LiPo supplement |
+
+> 💡 **Want to contribute?** Power supply is one of the most open areas of the project. Interesting directions to explore: mount with integrated LiPo and wireless charging, integration with the Yamaha/Bosch e-bike CAN bus, dynamo support with a supercapacitor to keep power while stopped. Any proposal, schematic or prototype is welcome.
+
+---
+
 ## 3D-printed handlebar mount
 
 The `3d-mounts/` directory contains a STEP file for a handlebar mount:
@@ -303,6 +325,7 @@ iPhone: SwiftUI, CoreLocation, MapKit routing, AVSpeechSynthesizer.
 - [ ] Widget for iPhone Lock Screen showing current speed
 - [ ] Battery-level optimisation (dim display when stationary)
 - [ ] Multi-language navigation voice (currently Italian only)
+- [ ] Power solutions for non-electric bikes (integrated LiPo in mount, hub dynamo, buck converter from e-bike battery)
 
 ### How to submit changes
 
