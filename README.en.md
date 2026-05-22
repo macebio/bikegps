@@ -60,10 +60,8 @@ If you have an **e-bike with a USB port on the handlebar controller** (such as H
 | **Powerbank** (5000 mAh, ~100g) | Any bike | Simplest option — lasts days, recharged via USB-C |
 | **LiPo 500 mAh + TP4056** | Integrated into mount | ~4h runtime (ESP32 draws ~100–150 mA with display active) |
 | **Buck converter 36/48V → 5V** | E-bike without USB port | Wired directly to the battery, always on with the bike |
-| **Hub dynamo** | Non-electric bike | Self-sufficient, but requires a rectifier + 5V regulator |
-| **Solar panel** | Summer / long rides | Unreliable alone, useful as a LiPo supplement |
 
-> 💡 **Want to contribute?** Power supply is one of the most open areas of the project. Interesting directions to explore: mount with integrated LiPo and wireless charging, integration with the Yamaha/Bosch e-bike CAN bus, dynamo support with a supercapacitor to keep power while stopped. Any proposal, schematic or prototype is welcome.
+> 💡 **Want to contribute?** Power supply is one of the most open areas of the project. Interesting directions to explore: mount with integrated LiPo and wireless charging, integration with the Yamaha/Bosch e-bike CAN bus. Any proposal, schematic or prototype is welcome.
 
 ---
 
@@ -327,7 +325,7 @@ iPhone: SwiftUI, CoreLocation, MapKit routing, AVSpeechSynthesizer.
 - [ ] Widget for iPhone Lock Screen showing current speed
 - [ ] Battery-level optimisation (dim display when stationary)
 - [ ] Multi-language navigation voice (currently Italian only)
-- [ ] Power solutions for non-electric bikes (integrated LiPo in mount, hub dynamo, buck converter from e-bike battery)
+- [ ] Alternative power solutions (integrated LiPo in mount, buck converter from e-bike battery)
 
 ### How to submit changes
 
