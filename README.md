@@ -6,6 +6,8 @@ Un display GPS fai-da-te per ciclisti — un'app iPhone manda la tua posizione e
 
 ![BikeGPS display showing map tile and navigation](icon.jpg)
 
+▶️ **[Guarda il progetto in azione su Instagram](https://www.instagram.com/reel/DYcmjXJIwDb/)**
+
 > **⚠️ Prototipo v1** — questo è un progetto personale al suo primo rilascio pubblico. Funziona, ma ci sono sicuramente molte cose da migliorare: hardware, firmware, app, mount 3D. Ogni suggerimento, segnalazione di bug, pull request o idea è benvenuta. Il progetto è pensato per crescere con la comunità.
 
 > **📱 Nota iOS** — per limiti imposti da Apple, l'app iPhone richiede di essere ricompilata da Xcode ogni 7 giorni (account gratuito). È scomodo ma non c'è alternativa senza pagare 99€/anno. [→ Leggi la guida completa](docs/ios-sideloading.md). Una **versione Android** è in lavorazione e non avrà questo problema.
